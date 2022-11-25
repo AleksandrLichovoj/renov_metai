@@ -4,13 +4,8 @@ using System.Formats.Asn1;
 using System.Globalization;
 using System.Net.NetworkInformation;
 
-//csvPath = Path("C:\\Users\\cicui\\Documents\\apartment_buildings_2019.csv");
-using (var reader = new StreamReader("C:\\Users\\cicui\\Documents\\apartment_buildings_2019.csv"))
-using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-{
-    records = csv.GetRecords<Namas>();
-    //foreach () 
-}
+var path = @"C:\\Users\\cicui\\Documents\\apartment_buildings_2019.csv";
+
 public class Namas
 {
     public int Id { get; set; }
@@ -24,7 +19,7 @@ public class Namas
     public int bendr_plotas { get; set; }
     public int naud_plotas { get; set; }
     public DateTime renov_metai { get; set; }
-    public string renovacijos_statusas { get; set; } //bool maybe
+    public string renovacijos_statusas { get; set; } 
     public string energ_naudingumo_klase { get; set; }
     public int butu_skaicius { get; set; }
     public int negyvenamuju_palapu_skaicius { get; set; }
