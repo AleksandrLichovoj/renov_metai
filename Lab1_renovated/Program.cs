@@ -6,6 +6,9 @@ using System.Globalization;
 using System.Net.NetworkInformation;
 
 var path = @"C:\Users\cicui\Documents\\apartment_buildings_2019.csv";
+int max_metai = 0;
+int min_metai = 2022;
+int yearsort = 2;
 using (TextFieldParser csvParser = new TextFieldParser(path))
 {
     csvParser.SetDelimiters(new string[] { ";" });
@@ -32,7 +35,25 @@ using (TextFieldParser csvParser = new TextFieldParser(path))
         string negyvenamuju_palapu_skaicius = sarasas[15];
         string korpusas = sarasas[16];
         string sklypo_plotas = sarasas[17];
+
+        if (renovacijos_statusas == "Renovuotas")
+        {
+            string[] renov = sarasas;
+            try { 
+                int metai_num = Int32.Parse(renov[11]);
+                if (metai_num > max_metai)
+                    max_metai = metai_num;
+                if (metai_num < min_metai)
+                    min_metai = metai_num;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine($"Unable to parse '{renov[11]}'");
+            }
+        }
     }
+    int bucket_num = ((max_metai - min_metai)/yearsort)+1;
+    
 }
 public class Namas
 {
