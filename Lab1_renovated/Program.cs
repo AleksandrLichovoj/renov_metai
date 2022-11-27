@@ -4,11 +4,13 @@ using System;
 using System.Formats.Asn1;
 using System.Globalization;
 using System.Net.NetworkInformation;
+using System.Collections.Generic;
 
-var path = @"C:\Users\cicui\Documents\\apartment_buildings_2019.csv";
+var path = @"C:\Users\cicui\Documents\\apartment_buildings_2019.csv"; //change path if needed
 int max_metai = 0;
 int min_metai = 2022;
 int yearsort = 2;
+string[] renov = null;
 using (TextFieldParser csvParser = new TextFieldParser(path))
 {
     csvParser.SetDelimiters(new string[] { ";" });
@@ -35,10 +37,10 @@ using (TextFieldParser csvParser = new TextFieldParser(path))
         string negyvenamuju_palapu_skaicius = sarasas[15];
         string korpusas = sarasas[16];
         string sklypo_plotas = sarasas[17];
-
+        
         if (renovacijos_statusas == "Renovuotas")
         {
-            string[] renov = sarasas;
+            renov = sarasas;
             try { 
                 int metai_num = Int32.Parse(renov[11]);
                 if (metai_num > max_metai)
@@ -53,7 +55,15 @@ using (TextFieldParser csvParser = new TextFieldParser(path))
         }
     }
     int bucket_num = ((max_metai - min_metai)/yearsort)+1;
-    
+    //string bns = bucket_num.ToString();
+    List<string>[] buckets = new List<string>[bucket_num];
+
+
+    for (int i = 0; i < renov.Length; i++)
+    {
+        int bucket = (Int32.Parse(renov[11])/bucket_num);
+        buckets[bucket].AddRange(renov);
+    }
 }
 public class Namas
 {
