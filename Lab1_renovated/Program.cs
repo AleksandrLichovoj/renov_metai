@@ -55,15 +55,18 @@ using (TextFieldParser csvParser = new TextFieldParser(path))
         }
     }
     int bucket_num = ((max_metai - min_metai)/yearsort)+1;
-    //string bns = bucket_num.ToString();
     List<string>[] buckets = new List<string>[bucket_num];
-
+    for (int i = 0; i < bucket_num; i++)
+    {
+        buckets[i] = new List<string>();
+    }
 
     for (int i = 0; i < renov.Length; i++)
     {
-        int bucket = (Int32.Parse(renov[11])/bucket_num);
+        int bucket = ((Int32.Parse(renov[11])-2000)/yearsort);
         buckets[bucket].AddRange(renov);
     }
+ 
 }
 public class Namas
 {
