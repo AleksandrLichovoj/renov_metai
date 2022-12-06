@@ -15,6 +15,7 @@ int min_metai = 2022;
 int yearsort = 2;
 int r = 0;
 int s = 0;
+    int bucket = 0;
 string[] renov=null;
 Dictionary<int, Namas> namai = new Dictionary<int, Namas>();
 using (TextFieldParser csvParser = new TextFieldParser(path))
@@ -85,25 +86,27 @@ using (TextFieldParser csvParser = new TextFieldParser(path))
         
             for (int i = 0; i < renov.Length; i++)
             {
-                int bucket = ((Int32.Parse(renov[11]) - 2000) / yearsort);
+                 bucket = ((Int32.Parse(renov[11]) - 2000) / yearsort);
         buckets[bucket].AddRange(renov);
             
         }
 
-        //DisplayInConsole(buckets);
+        DisplayConsole(buckets);
 
     }
     
 }
-static void DisplayInConsole(string[] buckets)
+
+
+static void DisplayConsole(List<string>[] buckets)
 {
     Console.WriteLine("---START WRITING---");
     Console.WriteLine(buckets[1]);
-    foreach (string bucket in buckets)
+    foreach (List<string>[] buck in buckets)
     {
-        for (int i = 0; i < bucket.Length; i++)
+        for (int i = 0; i < buck.Length; i++)
         {
-            Console.WriteLine(bucket[i]);
+            Console.WriteLine(buck[i]);
         }
     }
     Console.WriteLine("");
