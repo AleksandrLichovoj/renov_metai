@@ -91,22 +91,32 @@ using (TextFieldParser csvParser = new TextFieldParser(path))
             
         }
 
-        DisplayConsole(buckets);
+        DisplayConsole(buckets, bucket_num);
 
     }
     
 }
 
 
-static void DisplayConsole(List<string>[] buckets)
+static void DisplayConsole(List<string>[] buckets, int bucket_num)
 {
     Console.WriteLine("---START WRITING---");
     Console.WriteLine(buckets[1]);
-    foreach (List<string>[] buck in buckets)
+   List<string>[] buck = new List<string>[bucket_num];
+
+    //for (int i = 0; i < bucket_num; i++)
     {
-        for (int i = 0; i < buck.Length; i++)
+     //  buck[i] = new List<string>();
+    }
+
+    //foreach (string[] buck in buckets)
+    {
+        for (int j = 0; j < bucket_num; j++)
         {
-            Console.WriteLine(buck[i]);
+            for (int i = 0; i < buckets.Length; i++)
+            {
+                Console.WriteLine(buck[j][i]);
+            }
         }
     }
     Console.WriteLine("");
