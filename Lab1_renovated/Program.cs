@@ -1,4 +1,4 @@
-﻿using CsvHelper;
+using CsvHelper;
 using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Formats.Asn1;
